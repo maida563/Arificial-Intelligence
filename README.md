@@ -1,2 +1,0 @@
-# Arificial-Intelligence Repository
-
