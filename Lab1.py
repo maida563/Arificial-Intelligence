@@ -10,16 +10,6 @@
 # print (course.replace("Python" , "Java"))
 # print("pro" in course)      # gives boolean value as True or False
 
-# # we can also use not operator {print ("python" not in course)}
-# # for complex numbers as a+bi we use x = 2+3j in python
-
-# print (10 + 3)
-# print (10 - 3)
-# print (10 * 3)
-# print (10 / 3)      #Returns actual answer like 3.333336
-# print (10 // 3)     #Returns integer like 3
-# print (10 % 3)      #Modulus operator
-# print (10 ** 3)     #Power operator like 10 raise to the power 3
 
 # We are now starting our conditional statements
 temperature = 50
