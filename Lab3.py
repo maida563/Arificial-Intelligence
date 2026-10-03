@@ -1,10 +1,10 @@
-# Task 1
+#=============================== Task 1 ==============================
 for i in range(1500,2701):
      if(i %7==0 and i%5==0 ):
           print(i)
 print("These are the numbers that are divisible by 7 and multiples of 5")
 
-# Task 2
+#============================== Task 2 ==============================
 def convert_temp():
     temperature=float(input("Enter temperature: "))
     type=input("Enter C or F: ")
@@ -19,7 +19,7 @@ def convert_temp():
 
 convert_temp()        
 
-#Task 3
+#===================== Task 3 ==================================
 # Guess number
 import random
 hidden=random.randint(1,9)

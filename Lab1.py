@@ -13,7 +13,7 @@
 
 # We are now starting our conditional statements
 temperature = 50
-if temperature > 35:            #Colon is the most important part
+if temperature > 35:            
     print("It's really hot today")
 elif temperature > 25:
     print("It's a pleasant day")

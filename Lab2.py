@@ -49,7 +49,6 @@ my_function("Pakistan")
 my_function()  
 my_function("Brazil")
 
-# Passing parameters as a list
 def my_function(food): 
     for x in food: 
         print(x) 
@@ -57,7 +56,7 @@ def my_function(food):
 fruits = ["apple", "banana", "cherry"] 
 my_function(fruits) 
 
-            # Insertion Sort
+            #================= Insertion Sort ========================
 mylist = [64, 34, 25, 12, 22, 11, 90, 5]
 print("My list is: ",mylist)
 
