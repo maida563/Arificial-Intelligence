@@ -15,7 +15,7 @@ def convert_temp():
           result=(temperature-32)/9*5 
           print(f"{temperature} fahrenheit in celsius is {result}")
     else:
-        print("Wrong Input!!")
+        print("Wrong Input!!\n Please enter C or F.")
 
 convert_temp()        
 
@@ -46,23 +46,24 @@ l=len(user)
 for i in range(len(user),0,-1):
     print(user[::-1])
 
-# TAsk 6
-num=[]
-for i in range(5):
-    user=int(input("Enter a series of numbers"))
-    num.append(user)
-i=0
-j=0
+#=========================== TAsk 6 =================================
+num = []
+# Takes all numbers in a single line
+user_input = input("Enter a series of numbers separated by spaces: ")
+
+# Convert input string into a list of integers
+for item in user_input.split():
+    num.append(int(item))
+i = 0 
+j = 0  
 for u in num:
-    if(u%2==0):
-        i+=1
-    elif (u%2!=0):
-        j+=1 
+    if u % 2 == 0:
+        i += 1
     else:
-        print("Invalid Input")    
+        j += 1 
 
 print(f"Even numbers: {i}")
-print(f"Odd numbers: {j}")    
+print(f"Odd numbers: {j}")
 
 # Task 7
 list=[[1,2,3,4],"Apple",'Q',1.345,100,True]
@@ -127,11 +128,13 @@ data = input("Enter binary numbers: ").split(',')
 
 result = []
 for binary in data:
+# int(binary,2) converts the binary string into decimal integer and divide with 5.
     if int(binary, 2) % 5 == 0:
         result.append(binary)
 
 print("Expected output: ")
-print(','.join(result))
+# Join output separated by commas.
+print(','.join(result)) 
 
 # Task 13
 s = input("Enter string: ")
@@ -147,13 +150,9 @@ for ch in s:
 print(f"Letters {letters}")
 print(f"Digits {digits}")
 
-
-
 # Task 14
-import re
-
+import re   # Imports relational expression library
 password = input("Enter password: ")
-
 if (6 <= len(password) <= 16 and
     re.search("[a-z]", password) and
     re.search("[A-Z]", password) and
