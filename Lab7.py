@@ -17,13 +17,16 @@ class Graph:
             return True
 
         if depth == limit:
-            return False
+            # Do not explore any deeper along this branch
+            return False 
 
         for child in self.graph.get(node, []):
             if self.dls(child, goal, limit, depth + 1, path):
+#  If any recursive call returns True (goal found), it propagates True(search stop)            
                 return True
-
         return False
+    
+# ================================================================================
 
     def ids(self, start, goal, max_depth):
         for limit in range(max_depth + 1):
@@ -62,15 +65,13 @@ g.add_edge('E', 'I')
 
 g.add_edge('I', 'L')
 
-# Parameters
-start = 'A'
-goal = 'G'
-
 # 1. Perform DLS
 print("Depth-Limited Search (Limit = 2)")
 print("---------------------------------")
-dls_path = []
+start = 'A'
+goal = 'G'
 limit = 2
+dls_path = []
 found_dls = g.dls(start, goal, limit, 0, dls_path)
 print(f"Depth {limit}: {' '.join(dls_path)}")
 if found_dls:

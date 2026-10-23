@@ -1,5 +1,4 @@
 from collections import deque
-
 class Graph:
     def __init__(self):
         self.graph={}
@@ -24,15 +23,15 @@ class Graph:
          visited= set()
          Q = deque([s])
          visited.add(s)
-         print("Simple BFS:")
+         print("Simple BFS:\n")
          while Q:
              v = Q.popleft()
              print(v, end=" ")
 
-             for w in self.graph[v]:
-                 if w not in visited:
-                     Q.append(w)
-                     visited.add(w)
+             for neighbors in self.graph[v]:
+                 if neighbors not in visited:
+                     Q.append(neighbors)
+                     visited.add(neighbors)
          print("\n")   
 
     def bfs_search(self, start_node, goal_node):
@@ -53,78 +52,48 @@ class Graph:
                 return traversal_path
 
 #         # Enqueue unvisited children/neighbors
-            for child in self.graph[curr]:
-                if child not in visited:
-                    visited.add(child)
-                    Q.append(child)
+            for neighbors in self.graph[curr]:
+                if neighbors not in visited:
+                    visited.add(neighbors)
+                    Q.append(neighbors)
 
         print("\nGoal node not found in tree.")
         return traversal_path
     # --------------------------------LAB 6-----------------------------------
 
     def DFS(self,s):
-        stack = [s]
+        Q = [s]
         visited = set()
-        while stack:
-            current_node = stack.pop()
+        while Q:
+            current_node = Q.pop()
             if current_node not in visited:
                 print(f"Visiting Node: {current_node}")
                 visited.add(current_node)
             
             for neighbor in reversed(self.graph[current_node]):
                 if neighbor not in visited:
-                    stack.append((neighbor))
+                    Q.append((neighbor))
 
     def DFS_goal(self, start_node, goal_node):
-        stack = [(start_node, [start_node])]
-        visited = set()
-
-        print(f"--- Starting DFS Search from '{start_node}' to '{goal_node}' ---")
-
-        while stack:
-            current_node, path = stack.pop()
-            if current_node not in visited:
-                print(f"Visiting Node: {current_node}")
-                visited.add(current_node)
-
-                if current_node == goal_node:
-                    print(f"\nGoal Node '{goal_node}' Found!")
-                    print(f"Path taken: {' --> '.join(path)}")
-                    return path
-
-                neighbors = self.graph.get(current_node, [])
-
-                for neighbor in reversed(neighbors):
-                    if neighbor not in visited:
-                        stack.append((neighbor, path + [neighbor]))
-
+        Q=[start_node]
+        visited=set()
+        traversal=[]
+        while Q:
+            curr=Q.pop()
+            if curr not in visited:
+                traversal.append(curr)
+                visited.add(curr)
+                print(f"Visited Node: {curr}")
+                if curr == goal_node:
+                    print(f"Goal Node found. ")
+                    return traversal
+                for neighbors in reversed(self.graph.get(curr,[])) :
+                    if neighbors not in visited:
+                        Q.append(neighbors)
         print(f"\nGoal Node '{goal_node}' was not found.")
         return None
-
-g = Graph()
-
-# Define graph connections
-g.add_edge('A','B')
-g.add_edge('A','F')
-g.add_edge('A','D')
-g.add_edge('A','E')
-g.add_edge('B','K')
-g.add_edge('B','J')
-g.add_edge('D','G')
-g.add_edge('E','C')
-g.add_edge('E','H')
-g.add_edge('E','I')
-g.add_edge('K','N')
-g.add_edge('K','M')
-g.add_edge('I','L')
-print("Simple BFS Path: ",end=" ")
-g.DFS('A')
-# Run DFS starting at 'A' and seeking 'G'
-print("BFS with Goal: ",end=" ")
-
-g.DFS_goal('A','Z')
-
-
+    
+# -------------------------------BFS Execution---------------------------------
 g=Graph()
 g.add_edge('A','B')
 g.add_edge('A','F')
@@ -149,9 +118,29 @@ g.BFS('A')
 path = g.bfs_search('A','G')
 print(f"Path Taken: {path}")
 
+# ----------------------------DFS Execution------------------------------
+g = Graph()
+g.add_edge('A','B')
+g.add_edge('A','F')
+g.add_edge('A','D')
+g.add_edge('A','E')
+g.add_edge('B','K')
+g.add_edge('B','J')
+g.add_edge('D','G')
+g.add_edge('E','C')
+g.add_edge('E','H')
+g.add_edge('E','I')
+g.add_edge('K','N')
+g.add_edge('K','M')
+g.add_edge('I','L')
+print("Simple DFS Path: ",end=" ")
+g.DFS('A')
+# Run DFS starting at 'A' and seeking 'G'
+print("DFS with Goal: ")
 
-# # =========================================== LAB 5 -- Task 3==========================================
+g.DFS_goal('A','G')
 
+# ============================ LAB 5 -- Task 3 ============================
 class SortedPriorityQueue:
     def __init__(self):
         self.queue = []
@@ -163,15 +152,16 @@ class SortedPriorityQueue:
         self.queue.append((priority, item))
         # Keep list sorted by priority in descending order
         # so highest priority (lowest number) is always at the end
-        self.queue.sort(key=lambda x: x[0], reverse=True)
-
+        self.queue.sort(reverse=True)
     def pop(self):
         if self.is_empty():
+ # This will print "pop from an empty priority queue" instead of throwing error.
             raise IndexError("pop from an empty priority queue")
 
         # Pops the last item in O(1) time
         priority, item = self.queue.pop()
         return item, priority
+    
 pq = SortedPriorityQueue()
 pq.push("Low priority task", 3)
 pq.push("Critical task", 1)
@@ -181,4 +171,3 @@ while not pq.is_empty():
     task, priority = pq.pop()
     print(f"Priority: {priority} -> Task: {task}")
 
-# ==========================================================================
