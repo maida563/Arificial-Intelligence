@@ -87,7 +87,7 @@ class Graph:
                 if curr == goal_node:
                     print(f"Goal Node found. ")
                     return traversal
-                for neighbors in reversed(self.graph.get(curr,[])) :
+                for neighbors in reversed(self.graph[curr]) :
                     if neighbors not in visited:
                         Q.append(neighbors)
         print(f"\nGoal Node '{goal_node}' was not found.")
