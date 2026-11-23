@@ -22,12 +22,15 @@ tree = {
 def minimax(node, depth, maximizingPlayer):
     # if depth == 0 or node is a terminal node then return static evaluation of node
     if depth == 0 or isinstance(tree[node], int):
+        # Checks for the leaf node that has Integer value
+        # Returns the value(int) 
         return tree[node]
 
     if maximizingPlayer:  # for Maximizer Player
         maxEva = float('-inf')
         for child in tree[node]:
             eva = minimax(child, depth - 1, False)
+            # MaxEva current high score, eva returns the child high score
             maxEva = max(maxEva, eva)
         return maxEva
 
@@ -39,7 +42,7 @@ def minimax(node, depth, maximizingPlayer):
         return minEva
 
 
-# Initial call: Minimax(node, 3, true)
+# Initial call: Minimax(node, depth, Player(min or max))
 result = minimax('A', 3, True)
 print('Optimal Value (Minimax):', result)
 
